@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch 'src/' --exec 'ts-node src/app.ts' -e ts "
+    "dev": "nodemon --watch 'src/' --exec 'ts-node src/app.ts' -e ts ",
+    "build": "tsc ",
+    "prod": "npm run build  && node dist/app.js",
+    "test": "jest --no-cache"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +17,24 @@
     "nodemon": "^1.18.9",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.13",
+    "@types/supertest": "^2.0.7",
+    "jest": "^23.6.0",
+    "supertest": "^3.4.1",
+    "ts-jest": "^23.10.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.ts",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
   }
 }
