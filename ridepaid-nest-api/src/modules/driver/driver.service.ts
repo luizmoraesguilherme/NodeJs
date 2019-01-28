@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Driver } from './driver.domain';
-import { Repository } from 'typeorm';
+import { Repository, InsertQueryBuilder } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -19,4 +19,8 @@ export class DriverService {
             }
         })
     }
+    public async insert(driver: Driver): Promise<Driver>{ 
+        return await this.driverRepository.save(driver);
+    }  
 }
+
