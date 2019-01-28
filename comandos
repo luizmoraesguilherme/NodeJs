@@ -1,7 +1,7 @@
-npm install typescript ts-node nodemon --save-dev
-./node_modules/.bin/tsc --init
-npm install express --save
-npm install @types/express --save-dev
-npm install jest ts-jest @types/jest --save-dev
-npm install body-parser --save
+sudo npm install typescript ts-node nodemon --save-dev
+sudo sudo ./node_modules/.bin/tsc --init
+sudo npm install express --save
+sudo npm install @types/express --save-dev
+sudo npm install jest ts-jest @types/jest --save-dev
+sudo npm install body-parser --save
 
