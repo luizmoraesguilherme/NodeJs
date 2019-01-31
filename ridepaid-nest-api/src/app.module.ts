@@ -1,20 +1,26 @@
 import { Module } from '@nestjs/common';
-import { DriverModule } from './modules/driver/driver.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DriverModule } from './modules/driver/driver.module';
 import { DriverSchema } from './schemas/driver.schema';
+import { AppConfigModule } from './shared/app-config/app-config.module';
+import { AppConfigService } from './shared/app-config/app-config.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      database: 'oitooito',
-      username: 'root',
-      password: 'root',
-      entities:[
-        DriverSchema
-      ]
+    TypeOrmModule.forRootAsync({
+      imports: [AppConfigModule],
+      inject: [AppConfigService],
+      useFactory: (config: AppConfigService) => ({
+        type: 'mysql',
+        host: config.get('DB_HOST'),
+        port: parseInt(config.get('DB_PORT')),
+        database: config.get('DB_NAME'),
+        username: config.get('DB_USER'),
+        password: config.get('DB_PASSWORD'),
+        entities: [
+          DriverSchema
+        ]
+      })
     }),
     DriverModule,
     
