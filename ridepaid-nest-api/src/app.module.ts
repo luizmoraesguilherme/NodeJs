@@ -4,6 +4,8 @@ import { DriverModule } from './modules/driver/driver.module';
 import { DriverSchema } from './schemas/driver.schema';
 import { AppConfigModule } from './shared/app-config/app-config.module';
 import { AppConfigService } from './shared/app-config/app-config.service';
+import { CarModule } from './modules/car/car.module';
+import { CarSchema } from './schemas/car.schema';
 
 @Module({
   imports: [
@@ -18,11 +20,13 @@ import { AppConfigService } from './shared/app-config/app-config.service';
         username: config.get('DB_USER'),
         password: config.get('DB_PASSWORD'),
         entities: [
-          DriverSchema
+          DriverSchema,
+          CarSchema
         ]
       })
     }),
     DriverModule,
+    CarModule,
     
   ],
   controllers: [],

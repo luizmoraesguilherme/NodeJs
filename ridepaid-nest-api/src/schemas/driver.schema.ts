@@ -30,5 +30,12 @@ export const DriverSchema = new EntitySchema<Driver>({
             length: 50,
             nullable: true
         }
+    },
+    relations:{
+        cars:{
+            type: 'one-to-many',
+            target: 'Car',
+            inverseSide: 'driver'
+        }
     }
 })
