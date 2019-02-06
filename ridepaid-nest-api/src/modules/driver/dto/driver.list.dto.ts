@@ -1,4 +1,4 @@
-import { CarListDto } from "../car/dto/car.list.dto";
+import { CarListDto } from "../../car/dto/car.list.dto";
 
 export class DriverListDto{
 

@@ -3,10 +3,12 @@ import { Driver } from "./driver.domain";
 import { DriverController } from "./driver.controller";
 import { DriverService } from "./driver.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { CarModule } from "../car/car.module";
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Driver])
+        TypeOrmModule.forFeature([Driver]),
+        CarModule
     ],
     providers: [
         Driver,

@@ -5,3 +5,22 @@ sudo npm install @types/express --save-dev
 sudo npm install jest ts-jest @types/jest --save-dev
 sudo npm install body-parser --save
 
+export API_ENV=development
+
+http://localhost:3000/driver/1/car/add
+
+{
+	"brand" : "Ford",
+	"model" : "Focus"
+}
+
+
+http://localhost:3000/driver
+
+http://localhost:3000/driver
+{
+	"name": "Teste de Insert",
+	"licenseType": "A",
+	"email": "teste@teste.com.br"
+}
+

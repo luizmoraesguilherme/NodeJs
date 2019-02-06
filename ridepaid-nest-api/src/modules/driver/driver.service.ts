@@ -2,13 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { Driver } from './driver.domain';
 import { Repository, InsertQueryBuilder, Like } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CarService } from '../car/car.service';
+import { Car } from '../car/car.domain';
 
 @Injectable()
 export class DriverService {
 
     constructor(
         @InjectRepository(Driver)
-        private readonly driverRepository: Repository<Driver>
+        private readonly driverRepository: Repository<Driver>,
+        private readonly carSevice: CarService
     ){
 
     }
@@ -39,6 +42,15 @@ export class DriverService {
     public async insert(driver: Driver): Promise<Driver>{ 
         return await this.driverRepository.save(driver);
     }  
+
+    public async addCarToDriver(car: Car): Promise<Driver>{
+        await this.carSevice.insert(car);
+        return await this.driverRepository
+            .createQueryBuilder('driver')
+            .innerJoinAndSelect('driver.cars', 'car')
+            .where('driver.id = :driverId', { driverId : car.driver.id})
+            .getOne();
+    }
     
 }
 
