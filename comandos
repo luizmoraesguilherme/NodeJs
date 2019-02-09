@@ -24,3 +24,10 @@ http://localhost:3000/driver
 	"email": "teste@teste.com.br"
 }
 
+
+http://localhost:3000/user
+
+{
+	"username": "luiz",
+	"password": "123456"
+}

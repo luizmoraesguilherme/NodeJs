@@ -6,6 +6,10 @@ import { AppConfigModule } from './shared/app-config/app-config.module';
 import { AppConfigService } from './shared/app-config/app-config.service';
 import { CarModule } from './modules/car/car.module';
 import { CarSchema } from './schemas/car.schema';
+import { UserModule } from './modules/user/user.module';
+import { UserSchema } from './schemas/user.schema';
+import { HashingModule } from './shared/hashing/hashing.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -21,13 +25,16 @@ import { CarSchema } from './schemas/car.schema';
         password: config.get('DB_PASSWORD'),
         entities: [
           DriverSchema,
-          CarSchema
+          CarSchema,
+          UserSchema
         ]
       })
     }),
     DriverModule,
     CarModule,
-    
+    UserModule,
+    HashingModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
