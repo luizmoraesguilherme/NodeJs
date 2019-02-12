@@ -1,10 +1,11 @@
-import { Controller, Get, Post, HttpCode, Body, Param, NotFoundException, Query, Put } from '@nestjs/common';
+import { Controller, Get, Post, HttpCode, Body, Param, NotFoundException, Query, Put, UseGuards } from '@nestjs/common';
 import { Driver } from './driver.domain';
 import { DriverService } from './driver.service';
 import { DriverListDto } from './dto/driver.list.dto';
 import { DriverInsertDto } from './dto/driver.insert.dto';
 import { DriverAddCarDto } from './dto/driver.add.car.dto';
 import { Car } from '../car/car.domain';
+import { AuthGuard } from '@nestjs/passport';
 
 
 @Controller('driver')
@@ -17,6 +18,7 @@ export class DriverController {
     }
 
     @Get()
+    @UseGuards(AuthGuard())
     public async list(@Query('page') page?: number, @Query('size') size?: number, @Query('name') name?: string): Promise<DriverListDto[]> {
         return await this.driverService.all(name, page, size).then(
             (drivers: Driver[]) => {

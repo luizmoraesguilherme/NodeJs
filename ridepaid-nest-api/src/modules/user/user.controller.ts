@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserListDto } from './dto/user.list.dto';
 import { UserInsertDto } from './dto/user.insert.dto';
 import { User } from './user.domain';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
@@ -11,6 +12,7 @@ export class UserController {
     ) { }
 
     @Get()
+    @UseGuards(AuthGuard())
     public async list(): Promise<UserListDto[]> {
         return await this.userService.list().then(
             (users) =>

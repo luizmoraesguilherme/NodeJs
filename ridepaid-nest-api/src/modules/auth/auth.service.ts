@@ -25,8 +25,8 @@ export class AuthService {
         return await this.jwtService.signAsync(jwtPayload);
     }
 
-    public async validadeJwtToken(payload: JwtPayload): Promise<boolean>{
-        return await this.userService.getByUsernameAndId(payload.username, payload.id) != null;
+    public async validadeJwtToken(payload: JwtPayload): Promise<User>{
+        return await this.userService.getByUsernameAndId(payload.username, payload.id);
     }
 
 }

@@ -9,7 +9,6 @@ import { CarSchema } from './schemas/car.schema';
 import { UserModule } from './modules/user/user.module';
 import { UserSchema } from './schemas/user.schema';
 import { HashingModule } from './shared/hashing/hashing.module';
-import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -27,16 +26,14 @@ import { AuthModule } from './modules/auth/auth.module';
           DriverSchema,
           CarSchema,
           UserSchema
-        ]
+        ],
+        // logging: true
       })
     }),
     DriverModule,
     CarModule,
     UserModule,
-    HashingModule,
-    AuthModule,
-  ],
-  controllers: [],
-  providers: [],
+    HashingModule
+  ]
 })
 export class AppModule { }

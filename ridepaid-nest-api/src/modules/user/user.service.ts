@@ -29,7 +29,7 @@ export class UserService {
         return await this.userRepository.createQueryBuilder('user')
             .where('user.username = :username and user.id = :id', {
                 username: username,
-                password: id
+                id: id
             }).getOne();
     }
 
